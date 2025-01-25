@@ -1,114 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Aadit Agarwal</title>
-</head>
-<body>
-    <nav>
-        <a href="../index.html">Home</a>
-        <a href="../projects/index.html">Projects</a>
-        <a href="../contact/index.html">Contact</a>
-        <a href="https://github.com/aaadit24" target="_blank">GitHub</a>
-        <a href="../resume/index.html">Resume</a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            html {
+                --color-accent: oklch(65% 50% 0);
+                accent-color: var(--color-accent);
+            }
+    
+            body {
+                max-width: 100ch;
+                margin-inline: max(1em, (100% - 100ch) / 2);
+                padding: 1rem;
+            }
+    
+            nav {
+                display: flex;
+                border-bottom: 1px solid oklch(80% 3% 200);
+                margin-bottom: 1em;
+            }
+            
+            nav a {
+                flex: 1;
+                text-decoration: none;
+                color: inherit;
+                text-align: center;
+                padding: 0.5em;
+            }
+    
+            nav a:hover {
+                border-bottom: 0.4em solid var(--color-accent);
+                padding-bottom: 0.1em;
+                background-color: oklch(from var(--color-accent) 95% 5% h);
+            }
+    
+            nav a.current {
+                border-bottom: 0.4em solid oklch(80% 3% 200);
+                padding-bottom: 0.1em;
+            }
+    
+            form {
+                max-width: 800px;
+            }
+    
+            form p {
+                margin: 0 0 1em 0;
+            }
+    
+            input, textarea {
+                font: inherit;
+                width: 100%;
+                padding: 0.5em;
+                margin-top: 0.5em;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                box-sizing: border-box;
+            }
+    
+            textarea {
+                min-height: 150px;
+                resize: vertical;
+            }
+    
+            button {
+                font: inherit;
+                width: 100%;
+                padding: 0.75em;
+                background: #f5f5f5;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+    
+            button:hover {
+                background: #e5e5e5;
+            }
+    
+            /* Projects page styling */
+            h1, h2, h3, h4, h5, h6 {
+                line-height: 1.1;
+                text-wrap: balance;
+            }
+    
+            h1 {
+                font-size: 400%;
+            }
+    
+            .projects {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+                gap: 1em;
+            }
+    
+            .projects article {
+                display: grid;
+                grid-template-rows: subgrid;
+                grid-row: span 3;
+            }
+    
+            .projects h2 {
+                margin: 0;
+            }
+    
+            .projects img {
+                width: 100%;
+                height: auto;
+            }
+        </style>
+        <title>Resume - Aadit Agarwal</title>
+    </head>
+    <body>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../projects/index.html">Projects</a>
+            <a href="../contact/index.html">Contact</a>
+            <a href="https://github.com/aaadit24" target="_blank">GitHub</a>
+            <a href="../resume/index.html" class="current">Resume</a>
+        </nav>
 
-    </nav>
+        <header>
+            <h1>Aadit Agarwal</h1>
+            <p>
+                San Diego, CA • 
+                <a href="tel:+18583196037">+1 858-319-6037</a> • 
+                <a href="mailto:aaadit242@gmail.com">aaadit242@gmail.com</a> •
+                <a href="https://linkedin.com/in/agarwalaadit" target="_blank">linkedin/in/agarwalaadit</a>
+            </p>
+        </header>
 
-    <header>
-        <h1>Aadit Agarwal</h1>
-        <p>
-            San Diego, CA • 
-            <a href="tel:+18583196037">+1 858-319-6037</a> • 
-            <a href="mailto:aaadit242@gmail.com">aaadit242@gmail.com</a> •
-            <a href="https://linkedin.com/in/agarwalaadit" target="_blank">linkedin/in/agarwalaadit</a>
-        </p>
-    </header>
+        <section id="education">
+            <h2>Education</h2>
+            <article>
+                <h3>University of California, San Diego</h3>
+                <p>B.S. Mathematics & Computer Science, Data Science Minor</p>
+                <p><time datetime="2021-09">Sep 2021</time> - <time datetime="2025-06">Jun 2025</time></p>
+                <p>Relevant Coursework: Object-Oriented Programming, Data Structures and Algorithms, Computer Architecture, Computer Vision, Discrete Mathematics, Software Engineering, Web Development</p>
+            </article>
+        </section>
 
-    <section id="education">
-        <h2>Education</h2>
-        <article>
-            <h3>University of California, San Diego</h3>
-            <p>B.S. Mathematics & Computer Science, Data Science Minor</p>
-            <p><time datetime="2021-09">Sep 2021</time> - <time datetime="2025-06">Jun 2025</time></p>
-            <p>Relevant Coursework: Object-Oriented Programming, Data Structures and Algorithms, Computer Architecture, Computer Vision, Discrete Mathematics, Software Engineering, Web Development</p>
-        </article>
-    </section>
+        <section id="experience">
+            <h2>Work Experience</h2>
+            
+            <article>
+                <header>
+                    <h3>Instructional Assistant</h3>
+                    <p>Halıcıoğlu Data Science Institute</p>
+                    <p><time datetime="2025-01">Jan 2025</time> - Present</p>
+                </header>
+                <ul>
+                    <li>Lead weekly review sessions for 50+ students, designing practice materials and providing guidance on complex coursework.</li>
+                    <li>Collaborate with professor to evaluate 300-student assessments and implement data-driven improvement.</li>
+                </ul>
+            </article>
 
-    <section id="experience">
-        <h2>Work Experience</h2>
-        
-        <article>
-            <header>
-                <h3>Instructional Assistant</h3>
-                <p>Halıcıoğlu Data Science Institute</p>
-                <p><time datetime="2025-01">Jan 2025</time> - Present</p>
-            </header>
+            <article>
+                <header>
+                    <h3>Software Engineer Intern</h3>
+                    <p>Vistas Global</p>
+                    <p><time datetime="2024-07">Jul 2024</time> - <time datetime="2024-09">Sep 2024</time></p>
+                </header>
+                <ul>
+                    <li>Developed a SaaS Asset Management application using ASP.NET MVC, C#, MySQL, and RESTful APIs.</li>
+                    <li>Enhanced user experience by designing UI/UX in Figma, incorporating feedback and requirements from stakeholders.</li>
+                    <li>Independently managed the full Software Development Life Cycle, from gathering requirements to final deployment.</li>
+                    <li>Designed and implemented a Java Android application for real-time barcode scanning.</li>
+                    <li>Deployed the application using IIS and implemented a CI/CD pipeline, ensuring seamless updates and deployment.</li>
+                </ul>
+            </article>
+
+            <article>
+                <header>
+                    <h3>Backend Software Engineer Intern</h3>
+                    <p>STEMz Learning (Non-Profit)</p>
+                    <p><time datetime="2024-01">Jan 2024</time> - <time datetime="2024-08">Aug 2024</time></p>
+                </header>
+                <ul>
+                    <li>Built and tested a recommendation system that delivers personalized and curated content suggestions.</li>
+                    <li>Designed and deployed a scalable backend infrastructure using AWS, capable of handling 1,000+ concurrent users.</li>
+                    <li>Developed a secure user authentication system, ensuring data privacy of over 750 students enrolled.</li>
+                    <li>Collaborated with cross-functional teams to integrate the backend with the frontend.</li>
+                </ul>
+            </article>
+
+            <article>
+                <header>
+                    <h3>Frontend Developer Intern</h3>
+                    <p>SkyIT Services</p>
+                    <p><time datetime="2024-02">Feb 2024</time> - <time datetime="2024-05">May 2024</time></p>
+                </header>
+                <ul>
+                    <li>Analyzed user research and feedback from product managers, resulting in the implementation of 5 new features.</li>
+                    <li>Optimized React components for real-time data visualization dashboards, improving rendering time.</li>
+                    <li>Integrated RESTful APIs and implemented state management using Redux, ensuring efficient data flow.</li>
+                </ul>
+            </article>
+
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
             <ul>
-                <li>Lead weekly review sessions for 50+ students, designing practice materials and providing guidance on complex coursework.</li>
-                <li>Collaborate with professor to evaluate 300-student assessments and implement data-driven improvement.</li>
+                <li>Languages: Java, C/C++, C#, HTML, CSS, JavaScript, SQL, PHP, Bash, Python, .NET, MATLAB</li>
+                <li>Frameworks: Django, NumPy, Matplotlib, SciPy, Node.js, Express.js, React.js, Next.js, Angular.js, TensorFlow</li>
+                <li>Developer Tools: Git, MongoDB, Gitlab CI/CD, MySQL, PostgreSQL, Apache, Azure, Docker, Kubernetes, IIS</li>
             </ul>
-        </article>
+        </section>
 
-        <article>
-            <header>
-                <h3>Software Engineer Intern</h3>
-                <p>Vistas Global</p>
-                <p><time datetime="2024-07">Jul 2024</time> - <time datetime="2024-09">Sep 2024</time></p>
-            </header>
-            <ul>
-                <li>Developed a SaaS Asset Management application using ASP.NET MVC, C#, MySQL, and RESTful APIs.</li>
-                <li>Enhanced user experience by designing UI/UX in Figma, incorporating feedback and requirements from stakeholders.</li>
-                <li>Independently managed the full Software Development Life Cycle, from gathering requirements to final deployment.</li>
-                <li>Designed and implemented a Java Android application for real-time barcode scanning.</li>
-                <li>Deployed the application using IIS and implemented a CI/CD pipeline, ensuring seamless updates and deployment.</li>
-            </ul>
-        </article>
-
-        <article>
-            <header>
-                <h3>Backend Software Engineer Intern</h3>
-                <p>STEMz Learning (Non-Profit)</p>
-                <p><time datetime="2024-01">Jan 2024</time> - <time datetime="2024-08">Aug 2024</time></p>
-            </header>
-            <ul>
-                <li>Built and tested a recommendation system that delivers personalized and curated content suggestions.</li>
-                <li>Designed and deployed a scalable backend infrastructure using AWS, capable of handling 1,000+ concurrent users.</li>
-                <li>Developed a secure user authentication system, ensuring data privacy of over 750 students enrolled.</li>
-                <li>Collaborated with cross-functional teams to integrate the backend with the frontend.</li>
-            </ul>
-        </article>
-
-        <article>
-            <header>
-                <h3>Frontend Developer Intern</h3>
-                <p>SkyIT Services</p>
-                <p><time datetime="2024-02">Feb 2024</time> - <time datetime="2024-05">May 2024</time></p>
-            </header>
-            <ul>
-                <li>Analyzed user research and feedback from product managers, resulting in the implementation of 5 new features.</li>
-                <li>Optimized React components for real-time data visualization dashboards, improving rendering time.</li>
-                <li>Integrated RESTful APIs and implemented state management using Redux, ensuring efficient data flow.</li>
-            </ul>
-        </article>
-
-
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <ul>
-            <li>Languages: Java, C/C++, C#, HTML, CSS, JavaScript, SQL, PHP, Bash, Python, .NET, MATLAB</li>
-            <li>Frameworks: Django, NumPy, Matplotlib, SciPy, Node.js, Express.js, React.js, Next.js, Angular.js, TensorFlow</li>
-            <li>Developer Tools: Git, MongoDB, Gitlab CI/CD, MySQL, PostgreSQL, Apache, Azure, Docker, Kubernetes, IIS</li>
-        </ul>
-    </section>
-
-    <section id="pdf-resume">
-        <h2>Download Resume</h2>
-        <p>
-            <a href="Aadit_Agarwal_Resume.pdf" target="_blank">
-                Download PDF version
-            </a>
-        </p>
-    </section>
-</body>
+        <section id="pdf-resume">
+            <h2>Download Resume</h2>
+            <p>
+                <a href="Aadit_Agarwal_Resume.pdf" target="_blank">
+                    Download PDF version
+                </a>
+            </p>
+        </section>
+    </body>
 </html>
