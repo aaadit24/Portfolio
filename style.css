@@ -195,3 +195,35 @@
  #pdf-resume {
     text-align: center;
  }
+
+ /* For Dark Mode */
+:root {
+    color-scheme: light dark;
+  }
+  
+  nav {
+    --border-color: oklch(50% 10% 200 / 40%);
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1em;
+  }
+  
+  nav a.current {
+    border-bottom-color: var(--border-color);
+  }
+  
+  nav a:hover {
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+  }
+  
+  .color-scheme {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 80%;
+  }
+  
+  /* Add to existing input, textarea, button rule */
+  select {
+    font: inherit;
+  }
