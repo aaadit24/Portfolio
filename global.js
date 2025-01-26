@@ -5,11 +5,11 @@ function $$(selector, context = document) {
 }
 
 let pages = [
-  { url: '/Portfolio/', title: 'Home' },
-  { url: '/Portfolio/projects/', title: 'Projects' },
-  { url: '/Portfolio/contact/', title: 'Contact' },
+  { url: 'Portfolio/', title: 'Home' },
+  { url: 'Portfolio/projects/', title: 'Projects' },
+  { url: 'Portfolio/contact/', title: 'Contact' },
   { url: 'https://github.com/aaadit24', title: 'GitHub' },
-  { url: '/Portfolio/resume/', title: 'Resume' }
+  { url: 'Portfolio/resume/', title: 'Resume' }
 ];
 
 const ARE_WE_HOME = document.documentElement.classList.contains('home');
