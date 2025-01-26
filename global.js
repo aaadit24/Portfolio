@@ -5,11 +5,11 @@ function $$(selector, context = document) {
 }
 
 let pages = [
-  { url: 'Portfolio/', title: 'Home' },
-  { url: 'Portfolio/projects/', title: 'Projects' },
-  { url: 'Portfolio/contact/', title: 'Contact' },
+  { url: '', title: 'Home' },
+  { url: 'projects/', title: 'Projects' },
+  { url: 'contact/', title: 'Contact' },
   { url: 'https://github.com/aaadit24', title: 'GitHub' },
-  { url: 'Portfolio/resume/', title: 'Resume' }
+  { url: 'resume/', title: 'Resume' }
 ];
 
 const ARE_WE_HOME = document.documentElement.classList.contains('home');
@@ -38,29 +38,3 @@ for (let p of pages) {
   
   nav.append(a);
 }
-
-document.body.insertAdjacentHTML(
-    'afterbegin',
-    `<label class="color-scheme">
-      Theme:
-      <select>
-        <option value="light dark">Automatic (${matchMedia("(prefers-color-scheme: dark)").matches ? "Dark" : "Light"})</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
-    </label>`
-  );
-  
-  const select = document.querySelector('.color-scheme select');
-  
-  if ("colorScheme" in localStorage) {
-    const savedScheme = localStorage.colorScheme;
-    document.documentElement.style.setProperty('color-scheme', savedScheme);
-    select.value = savedScheme;
-  }
-  
-  select.addEventListener('input', function(event) {
-    const newScheme = event.target.value;
-    document.documentElement.style.setProperty('color-scheme', newScheme);
-    localStorage.colorScheme = newScheme;
-  });
