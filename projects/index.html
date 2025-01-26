@@ -3,70 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            html {
-                --color-accent: oklch(65% 50% 0);
-                accent-color: var(--color-accent);
-            }
-    
-            body {
-                max-width: 100ch;
-                margin-inline: max(1em, (100% - 100ch) / 2);
-                padding: 1rem;
-            }
-    
-            nav {
-                display: flex;
-                border-bottom: 1px solid oklch(80% 3% 200);
-                margin-bottom: 1em;
-            }
-            
-            nav a {
-                flex: 1;
-                text-decoration: none;
-                color: inherit;
-                text-align: center;
-                padding: 0.5em;
-            }
-    
-            nav a:hover {
-                border-bottom: 0.4em solid var(--color-accent);
-                padding-bottom: 0.1em;
-                background-color: oklch(from var(--color-accent) 95% 5% h);
-            }
-    
-            nav a.current {
-                border-bottom: 0.4em solid oklch(80% 3% 200);
-                padding-bottom: 0.1em;
-            }
-
-            h1, h2, h3, h4, h5, h6 {
-                line-height: 1.1;
-                text-wrap: balance;
-            }
-
-
-            .projects {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-                gap: 1em;
-            }
-
-            .projects article {
-                display: grid;
-                grid-template-rows: subgrid;
-                grid-row: span 3;
-            }
-
-            .projects h2 {
-                margin: 0;
-            }
-
-            .projects img {
-                width: 100%;
-                height: auto;
-            }
-        </style>
+        <link rel="stylesheet" href="../style.css">
         <title>Projects</title>
     </head>
     <body>
