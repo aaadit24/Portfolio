@@ -13,6 +13,8 @@ let pages = [
 ];
 
 const ARE_WE_HOME = document.documentElement.classList.contains('home');
+const IS_GITHUB_PAGES = location.hostname.includes('github.io');
+const BASE_PATH = IS_GITHUB_PAGES ? '/Portfolio/' : '/';
 
 let nav = document.createElement('nav');
 document.body.prepend(nav);
@@ -20,8 +22,12 @@ document.body.prepend(nav);
 for (let p of pages) {
   let url = p.url;
   
-  if (!ARE_WE_HOME && !url.startsWith('http')) {
-    url = '../' + url;
+  if (!url.startsWith('http')) {
+    if (ARE_WE_HOME) {
+      url = BASE_PATH + url;
+    } else {
+      url = '../' + url;
+    }
   }
   
   let a = document.createElement('a');
