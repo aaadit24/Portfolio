@@ -37,3 +37,31 @@ for (let p of pages) {
   
   nav.append(a);
 }
+document.body.insertAdjacentHTML(
+    'afterbegin',
+    `<label class="color-scheme">
+      Theme:
+      <select>
+        <option value="light dark">Automatic (${matchMedia("(prefers-color-scheme: dark)").matches ? "Dark" : "Light"})</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label>`
+  );
+  
+  // Get reference to select element
+  const select = document.querySelector('.color-scheme select');
+  
+  // Set initial value from localStorage if it exists
+  if ("colorScheme" in localStorage) {
+    const savedScheme = localStorage.colorScheme;
+    document.documentElement.style.setProperty('color-scheme', savedScheme);
+    select.value = savedScheme;
+  }
+  
+  // Handle theme changes
+  select.addEventListener('input', function(event) {
+    const newScheme = event.target.value;
+    document.documentElement.style.setProperty('color-scheme', newScheme);
+    localStorage.colorScheme = newScheme;
+  });
