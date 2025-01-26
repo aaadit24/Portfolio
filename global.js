@@ -21,6 +21,7 @@ document.body.prepend(nav);
 
 for (let p of pages) {
   let url = p.url;
+  console.log(document.documentElement.classList.contains('home'))
   
   if (!url.startsWith('http')) {
     if (ARE_WE_HOME) {
