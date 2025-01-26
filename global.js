@@ -24,6 +24,7 @@ for (let p of pages) {
   
   if (!url.startsWith('http')) {
     if (ARE_WE_HOME) {
+      console.log('IT\'S ALIVE!');
       url = BASE_PATH + url;
     } else {
       url = '../' + url;
