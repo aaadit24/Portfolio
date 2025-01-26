@@ -6,23 +6,13 @@ function $$(selector, context = document) {
 
 let pages = [
   { url: '', title: 'Home' },
-  { url: '../projects/', title: 'Projects' },
-  { url: '../contact/', title: 'Contact' },
+  { url: 'Portfolio/projects/', title: 'Projects' },
+  { url: 'Portfolio/contact/', title: 'Contact' },
   { url: 'https://github.com/aaadit24', title: 'GitHub' },
-  { url: '../resume/', title: 'Resume' }
+  { url: 'Portfolio/resume/', title: 'Resume' }
 ];
 
 const ARE_WE_HOME = document.documentElement.classList.contains('home');
-
-if (ARE_WE_HOME) {
-    let pages = [
-        { url: '', title: 'Home' },
-        { url: 'projects/', title: 'Projects' },
-        { url: 'contact/', title: 'Contact' },
-        { url: 'https://github.com/aaadit24', title: 'GitHub' },
-        { url: 'resume/', title: 'Resume' }
-      ];
-}
 
 let nav = document.createElement('nav');
 document.body.prepend(nav);
