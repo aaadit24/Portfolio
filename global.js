@@ -18,11 +18,16 @@ let nav = document.createElement('nav');
 document.body.prepend(nav);
 
 for (let p of pages) {
-  let url = p.url;
+  let url = p.url
   
-  if (!ARE_WE_HOME && !url.startsWith('http')) {
-    url = '/' + url;
+  if (!ARE_WE_HOME) {
+    console.log('Works')
+    url = '../' + url;
   }
+  else {
+    url = 'Portfolio/' + url;
+  }
+  
   
   let a = document.createElement('a');
   a.href = url;
