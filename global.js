@@ -5,31 +5,23 @@ function $$(selector, context = document) {
 }
 
 let pages = [
-  { url: '', title: 'Home' },
-  { url: 'projects/', title: 'Projects' },
-  { url: 'contact/', title: 'Contact' },
+  { url: '/Portfolio/', title: 'Home' },
+  { url: '/Portfolio/projects/', title: 'Projects' },
+  { url: '/Portfolio/contact/', title: 'Contact' },
   { url: 'https://github.com/aaadit24', title: 'GitHub' },
-  { url: 'resume/', title: 'Resume' }
+  { url: '/Portfolio/resume/', title: 'Resume' }
 ];
 
 const ARE_WE_HOME = document.documentElement.classList.contains('home');
-const IS_GITHUB_PAGES = location.hostname.includes('github.io');
-const BASE_PATH = IS_GITHUB_PAGES ? '/Portfolio/' : '/';
 
 let nav = document.createElement('nav');
 document.body.prepend(nav);
 
 for (let p of pages) {
   let url = p.url;
-  console.log(document.documentElement.classList.contains('home'))
   
-  if (!url.startsWith('http')) {
-    if (ARE_WE_HOME) {
-      console.log('IT\'S ALIVE!');
-      url = BASE_PATH + url;
-    } else {
-      url = '../' + url;
-    }
+  if (!ARE_WE_HOME && !url.startsWith('http')) {
+    url = '../' + url;
   }
   
   let a = document.createElement('a');
