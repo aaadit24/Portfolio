@@ -21,7 +21,7 @@ for (let p of pages) {
   let url = p.url;
   
   if (!ARE_WE_HOME && !url.startsWith('http')) {
-    url = '../' + url;
+    url = '/' + url;
   }
   
   let a = document.createElement('a');
