@@ -5,16 +5,14 @@ function $$(selector, context = document) {
 }
 
 let pages = [
-  { url: '', title: 'Home' },
-  { url: 'projects/', title: 'Projects' },
-  { url: 'contact/', title: 'Contact' },
-  { url: 'https://github.com/aaadit24', title: 'GitHub' },
-  { url: 'resume/', title: 'Resume' }
-];
+    { url: '', title: 'Home' },
+    { url: 'projects/', title: 'Projects' },
+    { url: 'contact/', title: 'Contact' },
+    { url: 'https://github.com/aaadit24', title: 'GitHub' },
+    { url: 'resume/', title: 'Resume' }
+  ];
 
 const ARE_WE_HOME = document.documentElement.classList.contains('home');
-const IS_GITHUB_PAGES = location.hostname.includes('github.io');
-const BASE_PATH = IS_GITHUB_PAGES ? '/Portfolio/' : '/';
 
 let nav = document.createElement('nav');
 document.body.prepend(nav);
@@ -22,12 +20,8 @@ document.body.prepend(nav);
 for (let p of pages) {
   let url = p.url;
   
-  if (!url.startsWith('http')) {
-    if (ARE_WE_HOME) {
-      url = BASE_PATH + url;
-    } else {
-      url = '../' + url;
-    }
+  if (!ARE_WE_HOME && !url.startsWith('http')) {
+    url = '../' + url;
   }
   
   let a = document.createElement('a');
@@ -44,3 +38,29 @@ for (let p of pages) {
   
   nav.append(a);
 }
+
+document.body.insertAdjacentHTML(
+    'afterbegin',
+    `<label class="color-scheme">
+      Theme:
+      <select>
+        <option value="light dark">Automatic (${matchMedia("(prefers-color-scheme: dark)").matches ? "Dark" : "Light"})</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label>`
+  );
+  
+  const select = document.querySelector('.color-scheme select');
+  
+  if ("colorScheme" in localStorage) {
+    const savedScheme = localStorage.colorScheme;
+    document.documentElement.style.setProperty('color-scheme', savedScheme);
+    select.value = savedScheme;
+  }
+  
+  select.addEventListener('input', function(event) {
+    const newScheme = event.target.value;
+    document.documentElement.style.setProperty('color-scheme', newScheme);
+    localStorage.colorScheme = newScheme;
+  });
