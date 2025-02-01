@@ -227,3 +227,27 @@
   select {
     font: inherit;
   }
+
+/* GitHub Stats */
+#profile-stats {
+    margin: 2rem 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.stats-grid dt {
+    grid-row: 1;
+    font-weight: bold;
+}
+
+.stats-grid dd {
+    grid-row: 2;
+    margin: 0;
+    font-size: 1.25rem;
+}
