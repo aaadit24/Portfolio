@@ -1,48 +1,48 @@
 :root {
     --color-accent: oklch(65% 50% 0);
- }
- 
- body {
+}
+
+body {
     max-width: 100ch;
     margin-inline: max(1em, (100% - 100ch) / 2);
     padding: 1rem;
- }
- 
- nav {
+}
+
+nav {
     display: flex;
     border-bottom: 1px solid oklch(80% 3% 200);
     margin-bottom: 1em;
- }
- 
- nav a {
+}
+
+nav a {
     flex: 1;
     text-decoration: none;
     color: inherit;
     text-align: center;
     padding: 0.5em;
- }
- 
- nav a:hover {
+}
+
+nav a:hover {
     border-bottom: 0.4em solid var(--color-accent);
     padding-bottom: 0.1em;
     background-color: oklch(from var(--color-accent) 95% 5% h);
- }
- 
- nav a.current {
+}
+
+nav a.current {
     border-bottom: 0.4em solid oklch(80% 3% 200);
     padding-bottom: 0.1em;
- }
- 
- /* Contact form */
- form {
+}
+
+/* Contact form */
+form {
     max-width: 800px;
- }
- 
- form p {
+}
+
+form p {
     margin: 0 0 1em 0;
- }
- 
- input, textarea {
+}
+
+input, textarea {
     font: inherit;
     width: 100%;
     padding: 0.5em;
@@ -50,14 +50,14 @@
     border: 1px solid #ccc;
     border-radius: 3px;
     box-sizing: border-box;
- }
- 
- textarea {
+}
+
+textarea {
     min-height: 150px;
     resize: vertical;
- }
- 
- button {
+}
+
+button {
     font: inherit;
     width: 100%;
     padding: 0.75em;
@@ -65,87 +65,87 @@
     border: 1px solid #ccc;
     border-radius: 3px;
     cursor: pointer;
- }
- 
- button:hover {
+}
+
+button:hover {
     background: #e5e5e5;
- }
- 
- /* Projects page */
- h1, h2, h3, h4, h5, h6 {
+}
+
+/* Projects page */
+h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
     text-wrap: balance;
- }
- 
- h1 {
-    font-size: 400%;
- }
+}
 
- 
- .projects {
+h1 {
+    font-size: 400%;
+}
+
+
+.projects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
     gap: 1em;
- }
- 
- .projects article {
+}
+
+.projects article {
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 3;
- }
- 
- .projects h2 {
+}
+
+.projects h2 {
     margin: 0;
- }
- 
- .projects img {
+}
+
+.projects img {
     width: 100%;
     height: auto;
- }
- 
- /* Resume/CV */
- header {
-    margin-bottom: 2em;
- }
- 
- h1 {
-    margin-bottom: 0.5em;
- }
+}
 
- h1.resume {
+/* Resume/CV */
+header {
+    margin-bottom: 2em;
+}
+
+h1 {
+    margin-bottom: 0.5em;
+}
+
+h1.resume {
     text-align: center;
- }
- 
- header p {
+}
+
+header p {
     color: #666;
     display: flex;
     gap: 1em;
     flex-wrap: wrap;
     justify-content: center;
     margin: 0;
- }
- 
- header a {
+}
+
+header a {
     color: inherit;
     text-decoration: none;
- }
- 
- header a:hover {
+}
+
+header a:hover {
     text-decoration: underline;
- }
- 
- section {
+}
+
+section {
     margin: 2em 0;
- }
- 
- section > h2 {
+}
+
+section > h2 {
     border-bottom: 2px solid var(--color-accent);
     padding-bottom: 0.2em;
     margin-bottom: 1em;
     position: relative;
- }
- 
- section > h2::after {
+}
+
+section > h2::after {
     content: "";
     display: block;
     width: 100%;
@@ -153,80 +153,80 @@
     background: #ddd;
     position: absolute;
     bottom: -5px;
- }
- 
- article {
+}
+
+article {
     margin-bottom: 1.5em;
- }
- 
- article h3 {
+}
+
+article h3 {
     margin: 0;
     color: var(--color-accent);
- }
- 
- article p {
+}
+
+article p {
     margin: 0.2em 0;
- }
- 
- article header p {
+}
+
+article header p {
     color: #666;
     font-style: italic;
     justify-content: start;
- }
- 
- article ul {
+}
+
+article ul {
     margin: 0.5em 0;
     padding-left: 1.5em;
- }
- 
- article li {
+}
+
+article li {
     margin: 0.3em 0;
- }
- 
- #skills ul {
+}
+
+#skills ul {
     list-style: none;
     padding: 0;
- }
- 
- #skills li {
+}
+
+#skills li {
     margin: 0.5em 0;
- }
- 
- #pdf-resume {
+}
+
+#pdf-resume {
     text-align: center;
- }
+}
 
  /* For Dark Mode */
 :root {
     color-scheme: light dark;
-  }
-  
-  nav {
+}
+
+nav {
     --border-color: oklch(50% 10% 200 / 40%);
     display: flex;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 1em;
-  }
-  
-  nav a.current {
+}
+
+nav a.current {
     border-bottom-color: var(--border-color);
-  }
-  
-  nav a:hover {
+}
+
+nav a:hover {
     background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
-  }
-  
-  .color-scheme {
+}
+
+.color-scheme {
     position: absolute;
     top: 1rem;
     right: 1rem;
     font-size: 80%;
-  }
-  
-  /* Add to existing input, textarea, button rule */
-  select {
+}
+
+/* Add to existing input, textarea, button rule */
+select {
     font: inherit;
-  }
+}
 
 /* GitHub Stats */
 #profile-stats {
@@ -366,4 +366,18 @@
   height: 1em;
   background-color: var(--color);
   border-radius: 3px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+}
+
+.stats dt {
+  font-weight: bold;
+}
+
+.stats dd {
+  margin: 0;
 }
