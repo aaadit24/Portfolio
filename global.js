@@ -8,7 +8,9 @@ let pages = [
   { url: 'projects/', title: 'Projects' },
   { url: 'contact/', title: 'Contact' },
   { url: 'https://github.com/aaadit24', title: 'GitHub' },
-  { url: 'resume/', title: 'Resume' }
+  { url: 'resume/', title: 'Resume' },
+  { url: 'meta/', title: 'Meta' }
+
 ];
 
 const ARE_WE_HOME = document.documentElement.classList.contains('home');
