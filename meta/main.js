@@ -82,6 +82,8 @@ async function loadData() {
   } catch (error) {
     console.error('Error loading data:', error);
   }
+  initFileScrollytelling();
+
 }
 
 function processCommits() {
@@ -591,6 +593,137 @@ function displayCommitFiles(commits = filteredCommits) {
     .append('div')
     .attr('class', 'line')
     .style('background', d => fileTypeColors(d.type));
+}
+// Initialize file scrollytelling
+function initFileScrollytelling() {
+  // Check if elements exist
+  const fileScrollContainer = document.getElementById('file-scroll-container');
+  const fileItemsContainer = document.getElementById('file-items-container');
+  
+  if (!fileScrollContainer || !fileItemsContainer) {
+    console.error('File scrollytelling elements not found');
+    return;
+  }
+  
+  // Create file items from all lines
+  const allLines = filteredCommits.flatMap(d => d.lines);
+  
+  // Group lines by file and convert to array of file objects
+  const fileItems = d3.groups(allLines, d => d.file)
+    .map(([name, lines]) => ({ name, lines }));
+  
+  // Sort files by number of lines in descending order
+  const sortedFiles = d3.sort(fileItems, d => -d.lines.length);
+  
+  // Clear previous items
+  d3.select('#file-items-container').selectAll('.file-item').remove();
+  
+  // Create items for all files using normal document flow
+  d3.select('#file-items-container')
+    .selectAll('.file-item')
+    .data(sortedFiles)
+    .enter()
+    .append('div')
+    .attr('class', 'file-item')
+    .attr('data-index', (d, i) => i) // Store the index for easy reference
+    .html((d) => {
+      const totalLines = allLines.length;
+      const percentage = (d.lines.length / totalLines * 100).toFixed(1);
+      const primaryLanguage = getPrimaryLanguage(d.lines);
+      
+      return `
+        <p>
+          File <code>${d.name}</code> contains ${d.lines.length} lines of code.
+          This file represents ${percentage}% of the codebase.
+          The file is primarily written in ${primaryLanguage}.
+        </p>
+      `;
+    });
+  
+  // Track the highest index seen so far
+  let highestFileIndex = -1;
+  
+  // Set up scroll event to update visualization
+  fileScrollContainer.addEventListener('scroll', function() {
+    // Get all items
+    const items = fileItemsContainer.querySelectorAll('.file-item');
+    if (items.length === 0) return;
+    
+    // Determine which items are currently visible
+    const containerTop = this.scrollTop;
+    const containerBottom = containerTop + this.clientHeight;
+    
+    // Find the highest visible index
+    let currentHighestIndex = -1;
+    
+    items.forEach((item) => {
+      const itemTop = item.offsetTop;
+      const itemBottom = itemTop + item.offsetHeight;
+      const index = parseInt(item.getAttribute('data-index'));
+      
+      // Check if item is visible
+      if (itemBottom > containerTop && itemTop < containerBottom) {
+        currentHighestIndex = Math.max(currentHighestIndex, index);
+      }
+    });
+    
+    // If the current highest visible index has changed, update the visualization
+    if (currentHighestIndex !== highestFileIndex && currentHighestIndex >= 0) {
+      // Update to show all files from 0 to the highest visible index
+      const visibleFiles = sortedFiles.slice(0, currentHighestIndex + 1);
+      
+      // Update file visualization
+      displayVisibleFiles(visibleFiles);
+      
+      // Update the highest index seen
+      highestFileIndex = currentHighestIndex;
+    }
+  });
+  
+  // Initial update
+  fileScrollContainer.dispatchEvent(new Event('scroll'));
+}
+
+// Helper function to display visible files
+function displayVisibleFiles(files) {
+  // Clear existing files
+  d3.select('#file-viz-container .files').selectAll('div').remove();
+  
+  // Create new file containers
+  let filesDivs = d3.select('#file-viz-container .files')
+    .selectAll('div')
+    .data(files)
+    .enter()
+    .append('div');
+  
+  // Add file name and line count
+  filesDivs.append('dt')
+    .html(d => `<code>${d.name}</code><small>${d.lines.length} lines</small>`);
+  
+  // Add dots for each line
+  filesDivs.append('dd')
+    .selectAll('div')
+    .data(d => d.lines)
+    .enter()
+    .append('div')
+    .attr('class', 'line')
+    .style('background', d => fileTypeColors(d.type));
+}
+
+// Helper function to get primary language of a file
+function getPrimaryLanguage(lines) {
+  const languages = d3.rollup(lines, v => v.length, d => d.type);
+  let maxCount = 0;
+  let primaryLang = "unknown";
+  
+  for (const [lang, count] of languages) {
+    if (count > maxCount) {
+      maxCount = count;
+      primaryLang = lang;
+    }
+  }
+  
+  return primaryLang;
 }
 
 document.addEventListener('DOMContentLoaded', async () => {

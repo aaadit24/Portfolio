@@ -24,7 +24,15 @@
         </div>
 
         <h2>File Size Visualization</h2>
-        <dl class="files"></dl>
+        <div id="file-scrollytelling">
+            <!-- Reversed layout: viz on left, scrolly on right -->
+            <div id="file-viz-container">
+                <dl class="files"></dl>
+            </div>
+            <div id="file-scroll-container">
+                <div id="file-items-container"></div>
+            </div>
+        </div>
 
         <dl id="commit-tooltip" class="info tooltip" hidden>
             <dt>Commit</dt>
@@ -43,6 +51,7 @@
             <dt>Lines edited</dt>
             <dd id="commit-lines"></dd>
         </dl>
+        
         <p id="selection-count">No commits selected</p>
         <dl id="language-breakdown" class="stats"></dl>
         
