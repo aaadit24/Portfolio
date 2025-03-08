@@ -92,7 +92,7 @@ function processCommits() {
       let { author, date, time, timezone, datetime } = first;
       let ret = {
         id: commit,
-        url: 'https://github.com/aaadit24/commit/' + commit,
+        url: 'https://github.com/aaadit24/Portfolio/commit/' + commit,
         author,
         date,
         time,
