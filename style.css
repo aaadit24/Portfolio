@@ -1,5 +1,6 @@
 :root {
     --color-accent: oklch(65% 50% 0);
+    color-scheme: light dark;
 }
 
 body {
@@ -8,9 +9,11 @@ body {
     padding: 1rem;
 }
 
+/* Navigation */
 nav {
+    --border-color: oklch(50% 10% 200 / 40%);
     display: flex;
-    border-bottom: 1px solid oklch(80% 3% 200);
+    border-bottom: 1px solid var(--border-color);
     margin-bottom: 1em;
 }
 
@@ -25,12 +28,27 @@ nav a {
 nav a:hover {
     border-bottom: 0.4em solid var(--color-accent);
     padding-bottom: 0.1em;
-    background-color: oklch(from var(--color-accent) 95% 5% h);
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
 nav a.current {
-    border-bottom: 0.4em solid oklch(80% 3% 200);
+    border-bottom: 0.4em solid var(--border-color);
     padding-bottom: 0.1em;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: 400%;
+    margin-bottom: 0.5em;
+}
+
+h1.resume {
+    text-align: center;
 }
 
 /* Contact form */
@@ -42,7 +60,7 @@ form p {
     margin: 0 0 1em 0;
 }
 
-input, textarea {
+input, textarea, select {
     font: inherit;
     width: 100%;
     padding: 0.5em;
@@ -72,16 +90,6 @@ button:hover {
 }
 
 /* Projects page */
-h1, h2, h3, h4, h5, h6 {
-    line-height: 1.1;
-    text-wrap: balance;
-}
-
-h1 {
-    font-size: 400%;
-}
-
-
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
@@ -103,17 +111,22 @@ h1 {
     height: auto;
 }
 
+.project-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.project-year {
+    font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-variant-numeric: oldstyle-nums;
+    color: #666;
+    margin: 0;
+}
+
 /* Resume/CV */
 header {
     margin-bottom: 2em;
-}
-
-h1 {
-    margin-bottom: 0.5em;
-}
-
-h1.resume {
-    text-align: center;
 }
 
 header p {
@@ -196,36 +209,12 @@ article li {
     text-align: center;
 }
 
- /* For Dark Mode */
-:root {
-    color-scheme: light dark;
-}
-
-nav {
-    --border-color: oklch(50% 10% 200 / 40%);
-    display: flex;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 1em;
-}
-
-nav a.current {
-    border-bottom-color: var(--border-color);
-}
-
-nav a:hover {
-    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
-}
-
+/* Dark Mode */
 .color-scheme {
     position: absolute;
     top: 1rem;
     right: 1rem;
     font-size: 80%;
-}
-
-/* Add to existing input, textarea, button rule */
-select {
-    font: inherit;
 }
 
 /* GitHub Stats */
@@ -252,213 +241,280 @@ select {
     font-size: 1.25rem;
 }
 
-.projects img {
-    width: 100%;
-    height: auto;
-}
-
-.project-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-}
-
-.project-year {
-    font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
-    font-variant-numeric: oldstyle-nums;
-    color: #666;
-    margin: 0;
-}
-
+/* Projects Plot */
 #projects-plot {
     max-width: 20em;
     margin-block: 2em;
     overflow: visible;
 }
 
-#projects-plot {
-  max-width: 20em;
-  margin-block: 2em;
-  overflow: visible;
-}
-
-.container {
-  display: flex;
-  align-items: center;
-  gap: 2em;
-}
-
-.legend {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
-  gap: 1em;
-  padding: 1em;
-  margin: 1em;
-  border: 1px solid #ccc;
-  list-style: none;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-}
-
-.swatch {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  background-color: var(--color);
-  border-radius: 3px;
-}
-
-#projects-plot {
-  max-width: 20em;
-  margin-block: 2em;
-  overflow: visible;
-}
-
 #projects-plot path {
-  cursor: pointer;
-  transition: 300ms;
+    cursor: pointer;
+    transition: 300ms;
 }
 
 #projects-plot:has(path:hover) path:not(:hover) {
-  opacity: 0.5;
+    opacity: 0.5;
 }
 
-.selected {
-  --color: oklch(60% 45% 0) !important;
-}
-
-.selected:is(path) {
-  fill: var(--color);
-}
-
-/* Existing styles remain the same */
+/* Container & Legend */
 .container {
-  display: flex;
-  align-items: center;
-  gap: 2em;
+    display: flex;
+    align-items: center;
+    gap: 2em;
 }
 
 .legend {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
-  gap: 1em;
-  padding: 1em;
-  margin: 1em;
-  border: 1px solid #ccc;
-  list-style: none;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+    gap: 1em;
+    padding: 1em;
+    margin: 1em;
+    border: 1px solid #ccc;
+    list-style: none;
 }
 
 .legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
 }
 
 .swatch {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  background-color: var(--color);
-  border-radius: 3px;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: var(--color);
+    border-radius: 3px;
 }
 
+/* Statistics & Information */
 .stats {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.5rem 1rem;
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background: var(--background);
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: var(--background, transparent);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .stats dt {
-  font-weight: bold;
-  color: var(--color-accent);
+    font-weight: bold;
+    color: var(--color-accent);
 }
 
 .stats dd {
-  margin: 0;
-  text-align: right;
-  font-family: var(--font-mono, monospace);
+    margin: 0;
+    text-align: right;
+    font-family: var(--font-mono, monospace);
 }
 
 .stats abbr {
-  text-decoration: none;
-  border-bottom: 1px dotted currentColor;
-  cursor: help;
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
 }
 
+/* Grid and Chart Styles */
 .gridlines line {
-  stroke: #ddd;
-  stroke-opacity: 0.3;
+    stroke: #ddd;
+    stroke-opacity: 0.3;
 }
 
 .gridlines path {
-  display: none;
+    display: none;
 }
 
+/* Info and Tooltip */
 dl.info {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.5em 1em;
-  margin: 0;
-  transition-duration: 500ms;
-  transition-property: opacity, visibility;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5em 1em;
+    margin: 0;
+    transition-duration: 500ms;
+    transition-property: opacity, visibility;
 }
 
 dl.info dt {
-  color: #666;
-  font-size: 0.9em;
+    color: #666;
+    font-size: 0.9em;
 }
 
 .tooltip {
-  position: fixed;
-  top: 1em;
-  left: 1em;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 1em;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    pointer-events: none;
+    z-index: 1000;
 }
 
 dl.info[hidden]:not(:hover, :focus-within) {
-  opacity: 0;
-  visibility: hidden;
+    opacity: 0;
+    visibility: hidden;
 }
 
-circle {
-  transition: 200ms;
-  transform-origin: center;
-  transform-box: fill-box;
-}
-
-circle:hover {
-  transform: scale(1.5);
-}
-
+/* Selection & Animations */
 @keyframes marching-ants {
-  to {
-    stroke-dashoffset: -8;
-  }
+    to {
+        stroke-dashoffset: -8;
+    }
 }
 
 .selection {
-  fill-opacity: 0.1;
-  stroke: black;
-  stroke-opacity: 0.7;
-  stroke-dasharray: 5 3;
-  animation: marching-ants 2s linear infinite;
+    fill-opacity: 0.1;
+    stroke: black;
+    stroke-opacity: 0.7;
+    stroke-dasharray: 5 3;
+    animation: marching-ants 2s linear infinite;
+}
+
+/* Selected state styling */
+.selected {
+    --color: oklch(60% 45% 0) !important;
+}
+
+.selected:is(path) {
+    fill: var(--color);
 }
 
 circle.selected {
-  fill: #ff6b6b;
+    fill: orange;
+}
+
+/* Circle animations */
+circle {
+    transition: cx 300ms ease-out, r 200ms ease-out, transform 200ms;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+circle:hover {
+    transform: scale(1.5);
+}
+
+/* File visualization */
+.files {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1em;
+    margin: 2em 0;
+}
+
+.files > div {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    margin-bottom: 1em;
+}
+
+.files dt {
+    grid-column: 1;
+}
+
+.files dd {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    align-content: start;
+    gap: 0.15em;
+    padding-top: 0.6em;
+    margin-left: 0;
+}
+
+.files code {
+    font-family: monospace;
+}
+
+.files small {
+    display: block;
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+.line {
+    display: flex;
+    width: 0.5em;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+/* Scrollytelling styles */
+/* Scrollytelling styles exactly as specified in requirements */
+#scrollytelling {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Equal width for both columns */
+}
+
+#scroll-container {
+  grid-column: 1;
+  position: relative;
+  width: 95%;
+  height: 300px;
+  overflow-y: auto; /* Changed from scroll to auto */
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+}
+
+#chart {
+  grid-column: 2;
+}
+
+#spacer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: none; /* transparent */
+  pointer-events: none;
+}
+
+#items-container {
+  position: static; /* Changed from absolute */
+  width: 100%;
+}
+
+.item {
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+  background-color: #f9f9f9;
+  margin-bottom: 0;
+  position: static; /* Changed from absolute */
+}
+
+.item p {
+  margin: 0; /* Remove paragraph margins */
+}
+
+.item a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.item a:hover {
+  text-decoration: underline;
+}
+
+/* Fix circle styling */
+circle {
+  transition: cx 300ms ease-out, r 200ms ease-out;
+}
+
+circle.selected {
+  fill: orange;
+}
+
+/* Chart SVG sizing */
+#chart svg {
+  width: 100%;
+  height: 100%;
 }
